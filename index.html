@@ -837,7 +837,6 @@ self.addEventListener('fetch', e => {
 
         const agora    = new Date();
         const mesAtual = (agora.getMonth()+1).toString().padStart(2,'0') + '/' + agora.getFullYear();
-        if (mesesAbertos.size === 0) mesesAbertos.add(mesAtual);
 
         lista.innerHTML = '';
 
