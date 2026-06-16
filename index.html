@@ -547,7 +547,11 @@
                 diasHtml+=`<div class="dia-group"><button class="dia-header" onclick="toggleDia('${dataId}')"><div class="dia-header-left"><span>${data}</span><span class="dia-badge">R$ ${dia.totalDia.toFixed(2).replace('.',',')}</span></div><span class="seta-toggle" id="seta-${dataId}">▼</span></button><div class="vendas-container" id="vendas-${dataId}">${vendasHtml}</div></div>`;
             });
             const totalMesFat=grupos[mes].total;
-            section.innerHTML=`<div class="mes-header" onclick="toggleMes('${mesId}')"><span>${mes}</span><div style="display:flex;align-items:center;gap:6px;"><span class="mes-fat-badge">R$ ${totalMesFat.toFixed(2).replace('.',',')}</span><span class="seta-toggle" id="seta-mes-${mesId}" style="transform:rotate(-90deg);">▼</span></div></div><div id="cont-${mesId}" class="mes-content" style="display:none;">${diasHtml}</div>`;
+            const gastosMes=gastos.filter(g=>g.mesRef===mes).reduce((s,g)=>s+g.valor,0);
+            const lucroMes=totalMesFat-gastosMes;
+            const lucroCorMes=lucroMes>=0?'var(--accent)':'#e05252';
+            const lucroSinal=lucroMes>=0?'+':'−';
+            section.innerHTML=`<div class="mes-header" onclick="toggleMes('${mesId}')"><span>${mes}</span><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><span class="mes-fat-badge">R$ ${totalMesFat.toFixed(2).replace('.',',')}</span><span style="font-family:var(--font-mono);font-size:11px;color:${lucroCorMes};background:${lucroMes>=0?'var(--accent-dim)':'var(--red-dim)'};border:1px solid ${lucroMes>=0?'rgba(78,203,122,.18)':'rgba(224,82,82,.25)'};padding:3px 9px;border-radius:5px;font-weight:700;">${lucroSinal} R$ ${Math.abs(lucroMes).toFixed(2).replace('.',',')}</span><span class="seta-toggle" id="seta-mes-${mesId}" style="transform:rotate(-90deg);">▼</span></div></div><div id="cont-${mesId}" class="mes-content" style="display:none;">${diasHtml}</div>`;
             hist.appendChild(section);
         });
         const q=document.getElementById('buscaHist');if(q&&q.value.trim())filtrarHistorico(q.value);
