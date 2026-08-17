@@ -13,6 +13,381 @@
         @font-face{font-family:'Playfair Display';src:local('Georgia'),local('serif');font-weight:400 700}
         @font-face{font-family:'Outfit';src:local('Helvetica Neue'),local('Arial'),local('sans-serif');font-weight:300 600}
         @font-face{font-family:'Space Mono';src:local('Courier New'),local('monospace');font-weight:400 700}
+    
+/* Modo caixa com teclado aberto: rodapé acompanha a área visual acima do teclado */
+.pdv-footer{
+    position:sticky;
+    bottom:0;
+    flex-shrink:0;
+    z-index:100;
+    background:var(--surface);
+    padding:10px 0 calc(10px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--border);
+    box-shadow:0 -8px 20px rgba(0,0,0,.18);
+}
+.pdv-footer.teclado-aberto{
+    position:fixed;
+    left:50%;
+    bottom:0;
+    width:min(100%,460px);
+    transform:translateX(-50%);
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:var(--surface);
+    border-top:1px solid var(--border);
+    box-shadow:0 -8px 24px rgba(0,0,0,.28);
+}
+.pdv-footer.teclado-aberto .btn-fim{
+    margin:0;
+    width:100%;
+    transform:none!important;
+    position:relative;
+    bottom:auto;
+    top:auto;
+}
+.pdv-scroll:has(#valorPago:focus) {
+    scroll-padding-bottom: 120px;
+}
+
+
+    
+/* Cabeçalho compacto para liberar espaço no caixa */
+
+    
+/* Layout compacto: mais conteúdo visível na tela */
+.container{max-width:430px;padding:0 10px}
+.top-bar{padding:10px 0 8px}
+.btn-menu{width:36px;height:36px;padding:0 10px}
+.top-status{font-size:12px;padding:6px 11px}
+.card{padding:14px;border-radius:16px;margin-bottom:8px}
+.card-label{margin-bottom:9px;font-size:8px}
+.desc-input{padding:8px 11px;font-size:13px;margin-bottom:6px}
+.modo-venda{margin-bottom:7px;padding:3px}
+.modo-btn{padding:6px 8px;font-size:10px}
+.input-group{gap:7px}
+input[type="number"]{padding:12px 12px 12px 40px;font-size:20px}
+.btn-add{width:50px}
+.peso-grid{gap:6px}
+.peso-grid input[type="number"]{font-size:18px;padding-left:36px}
+.peso-resultado{margin-top:7px;padding:9px 11px}
+.peso-resultado strong{font-size:19px}
+.btn-add-peso{height:40px;margin-top:6px}
+.cart-header-toggle{padding:8px 11px;margin-bottom:6px}
+.total-row{padding:7px 0 8px}
+#totalVenda{font-size:27px}
+.item-row{padding:8px 0}
+.item-val{font-size:16px;margin-right:9px}
+.item-del{width:27px;height:27px}
+.quick-vals{gap:4px;margin-top:5px}
+.btn-vr{height:30px;min-width:40px;font-size:10px}
+#valorPago{height:48px!important}
+.troco-box{margin-top:8px;padding:12px}
+.btn-fim{height:52px;font-size:11px}
+.pdv-footer{padding-top:7px}
+
+    
+/* Layout ainda mais compacto para celular */
+.container{max-width:410px;padding:0 7px}
+.top-bar{padding:6px 0 5px}
+.btn-menu{width:32px;height:32px;padding:0 8px}
+.btn-menu span:nth-child(1){width:15px}.btn-menu span:nth-child(2){width:10px}
+.top-status{font-size:10px;padding:5px 9px}
+.card{padding:10px;border-radius:12px;margin-bottom:5px}
+.card-label{margin-bottom:6px;font-size:7px}
+.desc-input{padding:6px 9px;font-size:12px;margin-bottom:4px}
+.modo-venda{margin-bottom:5px;padding:2px}
+.modo-btn{padding:5px 6px;font-size:9px}
+.input-group{gap:5px}
+input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
+.btn-add{width:44px;border-radius:11px;font-size:22px}
+.peso-grid{gap:5px}
+.peso-grid input[type="number"]{font-size:16px;padding-left:32px}
+.peso-label{font-size:8px;margin-bottom:4px}
+.peso-resultado{margin-top:5px;padding:7px 9px}
+.peso-resultado span{font-size:8px}
+.peso-resultado strong{font-size:17px}
+.btn-add-peso{height:36px;margin-top:5px;font-size:10px}
+.cart-header-toggle{padding:6px 9px;margin-bottom:4px}
+.cart-toggle-info{font-size:9px}
+.total-row{padding:5px 0 6px}
+.total-label{font-size:8px}
+#totalVenda{font-size:24px}
+.item-row{padding:6px 0}
+.item-idx{width:20px;font-size:9px}
+.item-info-desc{font-size:11px}
+.item-val{font-size:14px;margin-right:7px}
+.item-del{width:24px;height:24px;font-size:14px}
+.quick-vals{gap:3px;margin-top:4px}
+.btn-vr{height:27px;min-width:36px;font-size:9px}
+#valorPago{height:44px!important;font-size:18px!important}
+.troco-box{margin-top:6px;padding:9px}
+#valorTrocoTexto{font-size:22px}
+#listaNotas{font-size:10px;padding-top:7px;line-height:1.7}
+.btn-fim{height:48px;font-size:10px}
+.pdv-footer{padding-top:5px}
+
+    
+/* Total destacado acima do carrinho */
+.total-acima-carrinho{
+    margin-top:0;
+    padding:2px 0 6px;
+}
+.total-acima-carrinho #totalVenda{
+    font-size:26px;
+}
+
+    
+.carrinho-abaixo-total{
+    margin-top:0;
+    margin-bottom:6px;
+}
+
+    
+/* Esconde o botão Finalizar Venda enquanto o teclado estiver aberto */
+.pdv-footer.teclado-aberto{
+    display:none!important;
+}
+
+    
+
+    
+/* Finalizar Venda: posição absolutamente fixa no rodapé do PDV.
+   O teclado não reposiciona nem empurra o botão. */
+.pdv-footer{
+    position:absolute!important;
+    left:7px;
+    right:7px;
+    bottom:0;
+    width:auto!important;
+    z-index:100;
+    transform:none!important;
+    margin:0;
+    background:var(--surface);
+    padding:6px 0 calc(6px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--border);
+    box-shadow:0 -6px 16px rgba(0,0,0,.16);
+}
+.pdv-footer.teclado-aberto{
+    position:absolute!important;
+    left:7px;
+    right:7px;
+    bottom:0;
+    width:auto!important;
+    transform:none!important;
+    display:block!important;
+}
+.pdv-footer .btn-fim,
+.pdv-footer.teclado-aberto .btn-fim{
+    position:relative!important;
+    left:auto!important;
+    right:auto!important;
+    top:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    margin:0!important;
+    width:100%;
+}
+
+    
+.pdv-scroll{padding-bottom:78px;}
+
+    
+/* FINALIZAR VENDA: trava na posição original da tela.
+   Quando o teclado abre, ele NÃO acompanha a redução do viewport. */
+.pdv-footer{
+    position:fixed!important;
+    left:50%!important;
+    top:calc(var(--tela-inicial) - 64px)!important;
+    bottom:auto!important;
+    width:min(100% - 14px,396px)!important;
+    transform:translateX(-50%)!important;
+    z-index:100!important;
+}
+.pdv-footer.teclado-aberto{
+    position:fixed!important;
+    left:50%!important;
+    top:calc(var(--tela-inicial) - 64px)!important;
+    bottom:auto!important;
+    width:min(100% - 14px,396px)!important;
+    transform:translateX(-50%)!important;
+    display:block!important;
+}
+.pdv-footer .btn-fim,
+.pdv-footer.teclado-aberto .btn-fim{
+    position:relative!important;
+    top:auto!important;
+    bottom:auto!important;
+    left:auto!important;
+    right:auto!important;
+    transform:none!important;
+    margin:0!important;
+    width:100%!important;
+}
+
+    
+/* Copiar carrinho */
+.btn-copiar-carrinho{
+    width:100%;
+    height:34px;
+    margin:5px 0 7px;
+    background:var(--surface-2);
+    color:var(--text-2);
+    border:1px solid var(--border);
+    border-radius:var(--r-sm);
+    font-family:var(--font-sans);
+    font-size:9px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    cursor:pointer;
+    transition:background .15s,border-color .15s,color .15s,transform .1s;
+}
+.btn-copiar-carrinho:hover{
+    background:var(--surface-3);
+    border-color:rgba(78,203,122,.3);
+    color:var(--accent);
+}
+.btn-copiar-carrinho:active{transform:scale(.98)}
+
+    
+/* Novo Item e Carrinho lado a lado */
+@media (min-width:390px){
+    #telaPDV{
+        max-width:760px;
+    }
+    #telaPDV>.pdv-scroll{
+        display:grid;
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+        gap:8px;
+        align-content:start;
+    }
+    #telaPDV>.pdv-scroll>.card{
+        margin-bottom:0;
+    }
+}
+@media (max-width:389px){
+    #telaPDV>.pdv-scroll{
+        display:block;
+    }
+}
+
+    
+/* Fonte menor para os valores dos itens, evitando corte no carrinho */
+.item-val{
+    font-size:11px!important;
+    white-space:nowrap;
+    letter-spacing:-.02em;
+}
+.item-info-desc{
+    min-width:0;
+}
+.item-info-desc .item-desc{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+    
+/* Campo de preço compacto para caber inteiro na coluna esquerda */
+#valorInput{
+    font-size:16px!important;
+    padding-left:30px!important;
+    padding-right:7px!important;
+    letter-spacing:-.03em;
+}
+.input-group{
+    gap:4px;
+}
+.input-prefix{
+    font-size:10px!important;
+    left:10px!important;
+}
+.btn-add{
+    width:46px!important;
+    min-width:46px!important;
+    flex-shrink:0;
+}
+
+    
+/* Reduz também os valores do modo Por peso */
+#preco100g,#pesoInput{
+    font-size:14px!important;
+}
+.peso-grid input[type="number"]{
+    font-size:14px!important;
+    padding-left:30px!important;
+    padding-right:6px!important;
+}
+.btn-add-peso{
+    font-size:9px!important;
+}
+.peso-resultado strong{
+    font-size:16px!important;
+}
+
+    
+/* Campo Valor Recebido compacto para a coluna direita */
+#valorPago{
+    width:100%!important;
+    height:42px!important;
+    min-height:42px!important;
+    box-sizing:border-box!important;
+    font-size:15px!important;
+    padding:8px 8px 8px 34px!important;
+    letter-spacing:-.02em;
+}
+#valorPago + .input-prefix,
+.pdv-footer + * .input-prefix{
+    font-size:10px!important;
+}
+.quick-vals{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:4px!important;
+}
+.btn-vr{
+    min-width:0!important;
+    width:100%!important;
+    height:30px!important;
+    padding:0 3px!important;
+    font-size:9px!important;
+    white-space:nowrap!important;
+}
+
+    
+/* Campo de pagamento sem o título "Valor recebido" */
+
+    
+/* Valor recebido: sem texto cortado na coluna direita */
+#valorPago{
+    font-size:14px!important;
+    padding-left:32px!important;
+    padding-right:5px!important;
+    letter-spacing:-.04em!important;
+    min-width:0!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+}
+#valorPago::placeholder{
+    font-size:14px!important;
+    letter-spacing:0!important;
+    opacity:.65;
+}
+
+    
+/* Emoji de copiar ao lado de CARRINHO */
+.emoji-copiar-carrinho{
+    border:0;
+    background:transparent;
+    padding:0 0 0 5px;
+    margin:0;
+    font-size:12px;
+    line-height:1;
+    cursor:pointer;
+    vertical-align:middle;
+    opacity:.9;
+}
+.emoji-copiar-carrinho:active{transform:scale(.9)}
+
     </style>
     <style>
         :root{
@@ -41,7 +416,7 @@
         .particle,.burst-particle,.glow-orb{transition:none!important}
         *{box-sizing:border-box;margin:0;padding:0}
 
-        body{font-family:var(--font-sans);background:var(--bg);color:var(--text-1);min-height:100vh;display:flex;justify-content:center;padding:0 0 40px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        body{font-family:var(--font-sans);background:var(--bg);color:var(--text-1);min-height:100vh;display:flex;justify-content:center;padding:0;-webkit-font-smoothing:antialiased;overflow:hidden}
         body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:9999}
 
         .particles-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -52,7 +427,7 @@
         .glow-2{width:260px;height:260px;bottom:15%;left:-80px;background:radial-gradient(circle,rgba(78,203,122,.05) 0%,transparent 70%);animation-duration:11s;animation-delay:-4s}
         @keyframes glowPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.6}}
 
-        .container{width:100%;max-width:460px;position:relative;z-index:1;padding:0 16px;animation:pageIn .6s cubic-bezier(.22,1,.36,1) both}
+        .container{width:100%;max-width:460px;height:var(--altura-vv,100dvh);min-height:var(--altura-vv,100dvh);position:relative;z-index:1;padding:0 16px;animation:pageIn .6s cubic-bezier(.22,1,.36,1) both;display:flex;flex-direction:column;overflow:hidden}
         @keyframes pageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
         .top-bar{display:flex;align-items:center;justify-content:space-between;padding:22px 0 14px}
@@ -75,6 +450,10 @@
         @keyframes expandWidth{from{width:0;opacity:0}to{width:40px;opacity:1}}
 
         .card{background:var(--surface);border-radius:var(--r-lg);padding:20px;border:1px solid var(--border);margin-bottom:12px;position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.pdv-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding-bottom:14px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.pdv-footer{flex-shrink:0;background:var(--surface);padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--border);position:relative;z-index:30}
+.pdv-footer .btn-fim{margin:0;transform:none!important;position:relative;bottom:auto;top:auto}
+
         .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
         .card:focus-within{border-color:rgba(78,203,122,.3);box-shadow:0 0 0 3px rgba(78,203,122,.06),0 4px 20px rgba(0,0,0,.3)}
         .card-label{font-size:9px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.2em;margin-bottom:14px;display:flex;align-items:center;gap:10px}
@@ -97,6 +476,18 @@
         .btn-add:hover{background:#5dde8a;box-shadow:0 4px 16px rgba(78,203,122,.3)}
         .btn-add:hover::after{opacity:1}
         .btn-add:active{transform:scale(.90)}
+
+        .modo-venda{display:flex;gap:6px;margin:0 0 10px;background:var(--surface-2);padding:4px;border-radius:var(--r-sm);border:1px solid var(--border)}
+        .modo-btn{flex:1;border:1px solid transparent;background:transparent;color:var(--text-3);padding:8px 10px;border-radius:6px;font-family:var(--font-sans);font-size:11px;font-weight:600;cursor:pointer}
+        .modo-btn.ativo{background:var(--accent-dim);border-color:rgba(78,203,122,.25);color:var(--accent)}
+        .peso-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+        .peso-label{display:block;font-size:9px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.12em;margin:0 0 6px 2px}
+        .peso-grid input[type="number"]{font-size:20px;padding-left:42px}
+        .peso-resultado{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:12px 14px;background:var(--accent-dim);border:1px solid rgba(78,203,122,.18);border-radius:var(--r-md)}
+        .peso-resultado span{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--text-3);font-weight:600}
+        .peso-resultado strong{font-family:var(--font-mono);font-size:22px;color:var(--accent)}
+        .btn-add-peso{width:100%;height:46px;margin-top:8px;background:var(--accent);color:var(--forest);border:none;border-radius:var(--r-md);font-family:var(--font-sans);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;cursor:pointer}
+        .btn-add-peso:active{transform:scale(.98)}
 
         .cart-header-toggle{display:flex;justify-content:space-between;align-items:center;background:var(--surface-2);padding:10px 14px;border-radius:var(--r-sm);cursor:pointer;border:1px solid var(--border);margin-bottom:8px;transition:background .2s}
         .cart-header-toggle:hover{background:var(--surface-3)}
@@ -136,7 +527,7 @@
         #valorTrocoTexto{font-family:var(--font-mono);font-size:26px;font-weight:700;color:var(--gold-lt);letter-spacing:-.03em}
         #listaNotas{font-family:var(--font-mono);font-size:11px;color:var(--gold);border-top:1px dashed rgba(201,148,58,.3);padding-top:10px;line-height:2}
 
-        .btn-fim{width:100%;height:58px;background:var(--accent);color:var(--forest);border:none;border-radius:var(--r-md);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;margin-top:14px;font-family:var(--font-sans);position:relative;overflow:hidden;transition:background .15s,transform .15s,box-shadow .15s}
+        .btn-fim{width:100%;height:58px;background:var(--accent);color:var(--forest);border:none;border-radius:var(--r-md);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;margin-top:14px;font-family:var(--font-sans);position:relative;overflow:hidden;transition:background .15s,transform .22s cubic-bezier(.22,1,.36,1),box-shadow .15s;margin-bottom:0}
         .btn-fim::before{content:'';position:absolute;top:50%;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateY(-50%) skewX(-15deg);transition:left .5s}
         .btn-fim:hover{background:#5dde8a;box-shadow:0 6px 24px rgba(78,203,122,.25)}
         .btn-fim:hover::before{left:160%}
@@ -179,21 +570,6 @@
         .chart-labels.chart-labels-mes{gap:2px}
         .chart-modo-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:.1em;padding:4px 9px;border-radius:20px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
         .chart-modo-btn.ativo{background:rgba(78,203,122,.15);border-color:rgba(78,203,122,.3);color:var(--accent)}
-
-        /* AJUSTES TEMA CLARO — card de faturamento e gráficos usam fundo verde claro,
-           então precisam de texto escuro em vez do branco translúcido do tema escuro */
-        :root.tema-claro .fat-menu-box{box-shadow:0 4px 20px rgba(0,0,0,.1)}
-        :root.tema-claro .fat-menu-stat{background:rgba(255,255,255,.55);border-color:rgba(0,0,0,.06)}
-        :root.tema-claro .fat-menu-lbl{color:rgba(0,0,0,.5)}
-        :root.tema-claro .lucro-box{background:rgba(255,255,255,.55);border-color:rgba(0,0,0,.06)}
-        :root.tema-claro .lucro-icon{opacity:.5}
-        :root.tema-claro .chart-wrap{border-top-color:rgba(0,0,0,.1)}
-        :root.tema-claro .chart-eyebrow{color:rgba(0,0,0,.5)}
-        :root.tema-claro .chart-bar.zero{background:rgba(0,0,0,.12)}
-        :root.tema-claro .chart-bar.past{background:rgba(42,158,86,.4)}
-        :root.tema-claro .chart-lbl{color:rgba(0,0,0,.45)}
-        :root.tema-claro .chart-modo-btn{background:rgba(255,255,255,.5);border-color:rgba(0,0,0,.1);color:rgba(0,0,0,.5)}
-        :root.tema-claro .chart-modo-btn.ativo{background:rgba(42,158,86,.2);border-color:rgba(42,158,86,.4);color:#1a6b3a}
 
         /* HISTÓRICO */
         .busca-hist{width:100%;padding:9px 14px;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface-2);color:var(--text-1);font-family:var(--font-sans);font-size:13px;outline:none;transition:border-color .2s;margin-bottom:14px}
@@ -253,39 +629,68 @@
         <button class="btn-menu" onclick="toggleMenu()"><span></span><span></span></button>
         <div class="top-status"><span class="dot-live"></span><span id="dataHoraAtual">--/-- · --:--</span></div>
     </div>
-    <div class="header">
-        <div class="brand-eyebrow">Ponto de Venda</div>
-        <div class="brand-name">Bom <span>Granel</span></div>
-        <div class="brand-divider"></div>
-    </div>
 
+
+    <div class="pdv-scroll">
     <div class="card">
         <div class="card-label">Novo Item</div>
         <input type="text" class="desc-input" id="descInput" placeholder="Descrição (opcional)" autocomplete="off" autocorrect="off">
-        <div class="input-group">
-            <div class="input-wrapper">
-                <span class="input-prefix">R$</span>
-                <input type="number" id="valorInput" step="0.01" placeholder="0,00" autofocus inputmode="decimal">
+
+        <div class="modo-venda">
+            <button type="button" id="modoManual" class="modo-btn ativo" onclick="setModoVenda('manual')">Preço direto</button>
+            <button type="button" id="modoPeso" class="modo-btn" onclick="setModoVenda('peso')">⚖ Por peso</button>
+        </div>
+
+        <div id="blocoManual" class="bloco-venda">
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <span class="input-prefix">R$</span>
+                    <input type="number" id="valorInput" step="0.01" placeholder="0,00" autofocus inputmode="decimal">
+                </div>
+                <button class="btn-add" onclick="adicionarItem()">+</button>
             </div>
-            <button class="btn-add" onclick="adicionarItem()">+</button>
+        </div>
+
+        <div id="blocoPeso" class="bloco-venda" style="display:none;">
+            <div class="peso-grid">
+                <div>
+                    <label class="peso-label">Preço / 100 g</label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">R$</span>
+                        <input type="number" id="preco100gInput" step="0.01" min="0" placeholder="0,00" inputmode="decimal">
+                    </div>
+                </div>
+                <div>
+                    <label class="peso-label">Peso em gramas</label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">g</span>
+                        <input type="number" id="pesoInput" step="1" min="0" placeholder="0" inputmode="decimal">
+                    </div>
+                </div>
+            </div>
+            <div class="peso-resultado">
+                <span>Total</span>
+                <strong id="totalPeso">R$ 0,00</strong>
+            </div>
+            <button class="btn-add-peso" type="button" onclick="adicionarItemPeso()">Adicionar ao carrinho</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="card-label">Carrinho</div>
+        <div class="total-row total-acima-carrinho">
+            <span class="total-label">Total</span>
+            <span id="totalVenda">R$&nbsp;0,00</span>
+        </div>
+        <div class="card-label carrinho-abaixo-total">Carrinho <button type="button" class="emoji-copiar-carrinho" onclick="copiarCarrinho()" aria-label="Copiar carrinho" title="Copiar carrinho">📋</button></div>
         <div class="cart-header-toggle" onclick="toggleCarrinho()">
             <div class="cart-toggle-info"><span>ITENS NO CARRINHO:</span><span id="qtdItensCarrinho" style="color:var(--accent);font-weight:700;">0</span></div>
             <span class="cart-toggle-icon" id="cartToggleIcon">▼</span>
         </div>
         <div id="vendaAtual"></div>
-        <div class="total-row">
-            <span class="total-label">Total</span>
-            <span id="totalVenda">R$&nbsp;0,00</span>
-        </div>
         <div style="margin-top:4px;">
             <div class="input-wrapper">
                 <span class="input-prefix">R$</span>
-                <input type="number" id="valorPago" oninput="onPagoInput()" placeholder="Valor recebido" style="font-size:20px;height:54px;">
+                <input type="number" id="valorPago" oninput="onPagoInput()" placeholder="0,00" style="font-size:20px;height:54px;">
             </div>
             <div class="quick-vals">
                 <button class="btn-vr" onclick="setPago(5,this)">R$5</button>
@@ -300,6 +705,9 @@
             <div class="troco-header"><span class="troco-lbl">Troco</span><span id="valorTrocoTexto">R$ 0,00</span></div>
             <div id="listaNotas"></div>
         </div>
+    </div>
+    </div>
+    <div class="pdv-footer">
         <button class="btn-fim" onclick="finalizarVenda()">Finalizar Venda</button>
     </div>
 </div>
@@ -452,12 +860,81 @@
     function toggleMes(mesId){const c=document.getElementById('cont-'+mesId),s=document.getElementById('seta-mes-'+mesId),open=c.style.display==='block';c.style.display=open?'none':'block';s.style.transform=open?'rotate(-90deg)':'rotate(0deg)';}
     function toggleDia(dataId){document.getElementById('vendas-'+dataId).classList.toggle('aberto');document.getElementById('seta-'+dataId).classList.toggle('aberto');}
 
+    let modoVenda='manual';
+
+    function setModoVenda(modo){
+        modoVenda=modo;
+        document.getElementById('blocoManual').style.display=modo==='manual'?'block':'none';
+        document.getElementById('blocoPeso').style.display=modo==='peso'?'block':'none';
+        document.getElementById('modoManual').classList.toggle('ativo',modo==='manual');
+        document.getElementById('modoPeso').classList.toggle('ativo',modo==='peso');
+        if(modo==='manual')document.getElementById('valorInput').focus();
+        else document.getElementById('preco100gInput').focus();
+    }
+
+    function calcularPrecoPeso(){
+        const preco=parseFloat(document.getElementById('preco100gInput').value)||0;
+        const peso=parseFloat(document.getElementById('pesoInput').value)||0;
+        const total=(preco*peso)/100;
+        document.getElementById('totalPeso').textContent=`R$ ${total.toFixed(2).replace('.',',')}`;
+        return total;
+    }
+
     function adicionarItem(){
         const valEl=document.getElementById('valorInput'),descEl=document.getElementById('descInput');
         const val=parseFloat(valEl.value),desc=descEl.value.trim();
         if(isNaN(val)||val<=0){valEl.style.borderColor='var(--red)';setTimeout(()=>valEl.style.borderColor='',600);return;}
         itensVendaAtual.push({val,qty:1,desc});salvarCarrinho();
         valEl.value='';descEl.value='';valEl.focus();renderVendaAtual();
+    }
+
+    function adicionarItemPeso(){
+        const precoEl=document.getElementById('preco100gInput'),pesoEl=document.getElementById('pesoInput'),descEl=document.getElementById('descInput');
+        const preco=parseFloat(precoEl.value),peso=parseFloat(pesoEl.value),desc=descEl.value.trim();
+        if(isNaN(preco)||preco<=0){precoEl.style.borderColor='var(--red)';setTimeout(()=>precoEl.style.borderColor='',600);return;}
+        if(isNaN(peso)||peso<=0){pesoEl.style.borderColor='var(--red)';setTimeout(()=>pesoEl.style.borderColor='',600);return;}
+        const val=parseFloat(((preco*peso)/100).toFixed(2));
+        itensVendaAtual.push({val,qty:1,desc,peso,preco100g:preco,vendaPorPeso:true});
+        salvarCarrinho();precoEl.value='';pesoEl.value='';descEl.value='';document.getElementById('totalPeso').textContent='R$ 0,00';
+        descEl.focus();renderVendaAtual();
+    }
+
+
+    async function copiarCarrinho(){
+        if(itensVendaAtual.length===0){
+            showToast('Carrinho vazio');
+            return;
+        }
+
+        const linhas=itensVendaAtual.map((it,i)=>{
+            const n=normItem(it);
+            const total=itemTotal(it);
+            const descricao=n.desc||`Item ${i+1}`;
+            const detalhe=it.vendaPorPeso&&it.peso ? ` (${it.peso} g)` : '';
+            return `${i+1}. ${descricao}${detalhe} — R$ ${total.toFixed(2).replace('.',',')}`;
+        });
+
+        const total=itensVendaAtual.reduce((s,it)=>s+itemTotal(it),0);
+        const texto=`🛒 Pedido Bom Granel\n\n${linhas.join('\n')}\n\nTotal: R$ ${total.toFixed(2).replace('.',',')}`;
+
+        try{
+            await navigator.clipboard.writeText(texto);
+            showToast('✓ Carrinho copiado');
+        }catch(e){
+            const ta=document.createElement('textarea');
+            ta.value=texto;
+            ta.style.position='fixed';
+            ta.style.opacity='0';
+            document.body.appendChild(ta);
+            ta.select();
+            try{
+                document.execCommand('copy');
+                showToast('✓ Carrinho copiado');
+            }catch(err){
+                showToast('Não foi possível copiar');
+            }
+            ta.remove();
+        }
     }
 
     function renderVendaAtual(){
@@ -468,8 +945,9 @@
             lista.innerHTML='';
             itensVendaAtual.forEach((it,i)=>{
                 const{val,qty,desc}=normItem(it);const total=val*qty;
+                const detalhePeso=it.vendaPorPeso&&it.peso?`${it.peso} g · R$ ${it.preco100g.toFixed(2).replace('.',',')}/100g`:'';
                 const div=document.createElement('div');div.className='item-row';
-                div.innerHTML=`<span class="item-idx">#${i+1}</span><div class="item-info">${desc?`<span class="item-info-desc">${desc}</span>`:''}</div><span class="item-val">R$&nbsp;${total.toFixed(2).replace('.',',')}</span><button class="item-del" onclick="removerItem(${i})">×</button>`;
+                div.innerHTML=`<span class="item-idx">#${i+1}</span><div class="item-info">${desc?`<span class="item-info-desc">${desc}</span>`:''}${detalhePeso?`<span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">${detalhePeso}</span>`:''}</div><span class="item-val">R$&nbsp;${total.toFixed(2).replace('.',',')}</span><button class="item-del" onclick="removerItem(${i})">×</button>`;
                 lista.appendChild(div);
             });
         }
@@ -676,12 +1154,30 @@
     atualizarEyebrow();
     if(document.documentElement.classList.contains('tema-claro'))document.getElementById('btnTema').textContent='🌙';
 
+
+    /* Ajusta o PDV à área visual disponível quando o teclado do celular abre */
+    (function(){
+        const ajustarViewport=()=>{
+            const vv=window.visualViewport;
+            if(vv)document.documentElement.style.setProperty('--altura-vv',vv.height+'px');
+        };
+        window.visualViewport?.addEventListener('resize',ajustarViewport);
+        window.visualViewport?.addEventListener('scroll',ajustarViewport);
+        ajustarViewport();
+    })();
+
     document.getElementById('descInput').addEventListener('keypress',e=>{if(e.key==='Enter')document.getElementById('valorInput').focus();});
     document.getElementById('valorInput').addEventListener('keypress',e=>{if(e.key==='Enter')adicionarItem();});
+
+
     document.getElementById('valorPago').addEventListener('keypress',e=>{if(e.key==='Enter')finalizarVenda();});
     document.getElementById('valorGasto').addEventListener('keypress',e=>{if(e.key==='Enter')adicionarGasto();});
+    document.getElementById('preco100gInput').addEventListener('input',calcularPrecoPeso);
+    document.getElementById('pesoInput').addEventListener('input',calcularPrecoPeso);
+    document.getElementById('preco100gInput').addEventListener('keypress',e=>{if(e.key==='Enter')document.getElementById('pesoInput').focus();});
+    document.getElementById('pesoInput').addEventListener('keypress',e=>{if(e.key==='Enter')adicionarItemPeso();});
 
-    if('serviceWorker' in navigator){const swCode=`const CACHE='bom-granel-v2';self.addEventListener('install',e=>{self.skipWaiting();});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).then(r=>{const clone=r.clone();caches.open(CACHE).then(c=>c.put(e.request,clone));return r;}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./'))));});`;const blob=new Blob([swCode],{type:'application/javascript'});navigator.serviceWorker.register(URL.createObjectURL(blob)).then(reg=>reg.update()).catch(()=>{});}
+    if('serviceWorker' in navigator){const swCode=`const CACHE='bom-granel-v3';self.addEventListener('install',e=>{self.skipWaiting();});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).then(r=>{const clone=r.clone();caches.open(CACHE).then(c=>c.put(e.request,clone));return r;}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./'))));});`;const blob=new Blob([swCode],{type:'application/javascript'});navigator.serviceWorker.register(URL.createObjectURL(blob)).then(reg=>reg.update()).catch(()=>{});}
 
     /* SWIPE MENU: arrastar da esquerda pra direita abre, direita pra esquerda fecha */
     (function(){
@@ -777,6 +1273,23 @@
         // reaplicar filtro se houver busca ativa
         const buscaEl=document.getElementById('buscaGastos');if(buscaEl&&buscaEl.value.trim())filtrarGastos(buscaEl.value);
     }
+
+
+    /* Guarda a altura original da tela; não atualiza quando o teclado abre. */
+    (function(){
+        const definirTelaInicial=()=>{
+            if(!document.documentElement.style.getPropertyValue('--tela-inicial')){
+                document.documentElement.style.setProperty('--tela-inicial', window.innerHeight+'px');
+            }
+        };
+        definirTelaInicial();
+        window.addEventListener('orientationchange',()=>{
+            setTimeout(()=>{
+                document.documentElement.style.setProperty('--tela-inicial',window.innerHeight+'px');
+            },300);
+        });
+    })();
+
 </script>
 </body>
 </html>
