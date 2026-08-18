@@ -248,146 +248,6 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
 }
 .btn-copiar-carrinho:active{transform:scale(.98)}
 
-    
-/* Novo Item e Carrinho lado a lado */
-@media (min-width:390px){
-    #telaPDV{
-        max-width:760px;
-    }
-    #telaPDV>.pdv-scroll{
-        display:grid;
-        grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-        gap:8px;
-        align-content:start;
-    }
-    #telaPDV>.pdv-scroll>.card{
-        margin-bottom:0;
-    }
-}
-@media (max-width:389px){
-    #telaPDV>.pdv-scroll{
-        display:block;
-    }
-}
-
-    
-/* Fonte menor para os valores dos itens, evitando corte no carrinho */
-.item-val{
-    font-size:11px!important;
-    white-space:nowrap;
-    letter-spacing:-.02em;
-}
-.item-info-desc{
-    min-width:0;
-}
-.item-info-desc .item-desc{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-    
-/* Campo de preço compacto para caber inteiro na coluna esquerda */
-#valorInput{
-    font-size:16px!important;
-    padding-left:30px!important;
-    padding-right:7px!important;
-    letter-spacing:-.03em;
-}
-.input-group{
-    gap:4px;
-}
-.input-prefix{
-    font-size:10px!important;
-    left:10px!important;
-}
-.btn-add{
-    width:46px!important;
-    min-width:46px!important;
-    flex-shrink:0;
-}
-
-    
-/* Reduz também os valores do modo Por peso */
-#preco100g,#pesoInput{
-    font-size:14px!important;
-}
-.peso-grid input[type="number"]{
-    font-size:14px!important;
-    padding-left:30px!important;
-    padding-right:6px!important;
-}
-.btn-add-peso{
-    font-size:9px!important;
-}
-.peso-resultado strong{
-    font-size:16px!important;
-}
-
-    
-/* Campo Valor Recebido compacto para a coluna direita */
-#valorPago{
-    width:100%!important;
-    height:42px!important;
-    min-height:42px!important;
-    box-sizing:border-box!important;
-    font-size:15px!important;
-    padding:8px 8px 8px 34px!important;
-    letter-spacing:-.02em;
-}
-#valorPago + .input-prefix,
-.pdv-footer + * .input-prefix{
-    font-size:10px!important;
-}
-.quick-vals{
-    display:grid!important;
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-    gap:4px!important;
-}
-.btn-vr{
-    min-width:0!important;
-    width:100%!important;
-    height:30px!important;
-    padding:0 3px!important;
-    font-size:9px!important;
-    white-space:nowrap!important;
-}
-
-    
-/* Campo de pagamento sem o título "Valor recebido" */
-
-    
-/* Valor recebido: sem texto cortado na coluna direita */
-#valorPago{
-    font-size:14px!important;
-    padding-left:32px!important;
-    padding-right:5px!important;
-    letter-spacing:-.04em!important;
-    min-width:0!important;
-    width:100%!important;
-    box-sizing:border-box!important;
-}
-#valorPago::placeholder{
-    font-size:14px!important;
-    letter-spacing:0!important;
-    opacity:.65;
-}
-
-    
-/* Emoji de copiar ao lado de CARRINHO */
-.emoji-copiar-carrinho{
-    border:0;
-    background:transparent;
-    padding:0 0 0 5px;
-    margin:0;
-    font-size:12px;
-    line-height:1;
-    cursor:pointer;
-    vertical-align:middle;
-    opacity:.9;
-}
-.emoji-copiar-carrinho:active{transform:scale(.9)}
-
     </style>
     <style>
         :root{
@@ -617,6 +477,29 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
         @keyframes burstOut{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}
         ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:2px}
     </style>
+<style>
+.emoji-copiar-carrinho{
+    border:0;background:transparent;padding:2px 3px;margin-left:5px;
+    font-size:14px;line-height:1;cursor:pointer;opacity:.65;
+}
+.emoji-copiar-carrinho:hover{opacity:1}
+.emoji-copiar-carrinho:active{transform:scale(.92)}
+.carrinho-abaixo-total{display:flex;align-items:center}
+</style>
+
+<style>
+/* Finalizar Venda dentro do card, logo abaixo dos atalhos de pagamento */
+.btn-fim-no-local{
+    width:100%;
+    height:58px;
+    margin-top:14px;
+    margin-bottom:0;
+    display:block;
+}
+.pdv-footer{
+    display:none!important;
+}
+</style>
 </head>
 <body>
 <div class="glow-orb glow-1"></div>
@@ -681,16 +564,21 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
             <span class="total-label">Total</span>
             <span id="totalVenda">R$&nbsp;0,00</span>
         </div>
-        <div class="card-label carrinho-abaixo-total">Carrinho <button type="button" class="emoji-copiar-carrinho" onclick="copiarCarrinho()" aria-label="Copiar carrinho" title="Copiar carrinho">📋</button></div>
+        <div class="card-label carrinho-abaixo-total">
+                Carrinho
+                <button type="button" class="emoji-copiar-carrinho"
+                        onclick="copiarCarrinho()" aria-label="Copiar carrinho"
+                        title="Copiar carrinho">📋</button>
+            </div>
         <div class="cart-header-toggle" onclick="toggleCarrinho()">
             <div class="cart-toggle-info"><span>ITENS NO CARRINHO:</span><span id="qtdItensCarrinho" style="color:var(--accent);font-weight:700;">0</span></div>
             <span class="cart-toggle-icon" id="cartToggleIcon">▼</span>
         </div>
         <div id="vendaAtual"></div>
-        <div style="margin-top:4px;">
+                <div style="margin-top:4px;">
             <div class="input-wrapper">
                 <span class="input-prefix">R$</span>
-                <input type="number" id="valorPago" oninput="onPagoInput()" placeholder="0,00" style="font-size:20px;height:54px;">
+                <input type="number" id="valorPago" oninput="onPagoInput()" placeholder="Valor recebido" style="font-size:20px;height:54px;">
             </div>
             <div class="quick-vals">
                 <button class="btn-vr" onclick="setPago(5,this)">R$5</button>
@@ -705,10 +593,9 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
             <div class="troco-header"><span class="troco-lbl">Troco</span><span id="valorTrocoTexto">R$ 0,00</span></div>
             <div id="listaNotas"></div>
         </div>
+
+        <button class="btn-fim btn-fim-no-local" onclick="finalizarVenda()">Finalizar Venda</button>
     </div>
-    </div>
-    <div class="pdv-footer">
-        <button class="btn-fim" onclick="finalizarVenda()">Finalizar Venda</button>
     </div>
 </div>
 
