@@ -500,6 +500,45 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
     display:none!important;
 }
 </style>
+
+<style>
+/* Mantém o botão do menu sempre visível, mesmo quando o conteúdo é rolado */
+.top-bar{
+    flex-shrink:0 !important;
+    position:relative;
+    z-index:20;
+}
+.btn-menu{
+    flex-shrink:0 !important;
+    position:relative;
+    z-index:21;
+}
+</style>
+
+<style>
+/* CORREÇÃO: tela de Saídas de Caixa independente do layout fixo do PDV.
+   Quando o teclado abre, esta tela passa a rolar normalmente. */
+#telaGastos.gastos-ativo{
+    position:fixed !important;
+    inset:0 !important;
+    width:100% !important;
+    max-width:none !important;
+    height:100dvh !important;
+    min-height:0 !important;
+    max-height:100dvh !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    box-sizing:border-box !important;
+    padding-bottom:24px !important;
+    -webkit-overflow-scrolling:touch;
+}
+#telaGastos.gastos-ativo .top-bar{
+    flex-shrink:0 !important;
+}
+#telaGastos.gastos-ativo #valorGasto{
+    scroll-margin-bottom:140px;
+}
+</style>
 </head>
 <body>
 <div class="glow-orb glow-1"></div>
@@ -1059,6 +1098,11 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
 
     document.getElementById('valorPago').addEventListener('keypress',e=>{if(e.key==='Enter')finalizarVenda();});
     document.getElementById('valorGasto').addEventListener('keypress',e=>{if(e.key==='Enter')adicionarGasto();});
+    document.getElementById('valorGasto').addEventListener('focus',()=>{
+        setTimeout(()=>{
+            document.getElementById('valorGasto').scrollIntoView({behavior:'smooth',block:'center'});
+        },250);
+    });
     document.getElementById('preco100gInput').addEventListener('input',calcularPrecoPeso);
     document.getElementById('pesoInput').addEventListener('input',calcularPrecoPeso);
     document.getElementById('preco100gInput').addEventListener('keypress',e=>{if(e.key==='Enter')document.getElementById('pesoInput').focus();});
@@ -1092,8 +1136,29 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
     document.addEventListener('contextmenu',e=>e.preventDefault());
 
     history.replaceState({tela:'pdv'},'');
-    function mostrarTela(tela){const pdv=document.getElementById('telaPDV'),telaG=document.getElementById('telaGastos');if(tela==='gastos'){pdv.style.display='none';telaG.style.display='block';history.pushState({tela:'gastos'},'');renderizarGastos();}else{pdv.style.display='block';telaG.style.display='none';}}
-    window.addEventListener('popstate',function(){const telaG=document.getElementById('telaGastos');if(telaG&&telaG.style.display==='block'){document.getElementById('telaPDV').style.display='block';telaG.style.display='none';}});
+    function mostrarTela(tela){
+        const pdv=document.getElementById('telaPDV'),telaG=document.getElementById('telaGastos');
+        if(tela==='gastos'){
+            pdv.style.display='none';
+            telaG.style.display='block';
+            telaG.classList.add('gastos-ativo');
+            history.pushState({tela:'gastos'},'');
+            renderizarGastos();
+            setTimeout(()=>telaG.scrollTop=0,50);
+        }else{
+            pdv.style.display='block';
+            telaG.style.display='none';
+            telaG.classList.remove('gastos-ativo');
+        }
+    }
+    window.addEventListener('popstate',function(){
+        const telaG=document.getElementById('telaGastos');
+        if(telaG&&telaG.style.display==='block'){
+            document.getElementById('telaPDV').style.display='block';
+            telaG.style.display='none';
+            telaG.classList.remove('gastos-ativo');
+        }
+    });
 
     const mesesAbertos=new Set();
     function toggleMesGasto(mes,corpo,setaEl){if(mesesAbertos.has(mes)){mesesAbertos.delete(mes);corpo.style.display='none';setaEl.textContent='▸';}else{mesesAbertos.add(mes);corpo.style.display='block';setaEl.textContent='▾';}}
