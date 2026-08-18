@@ -539,6 +539,40 @@ input[type="number"]{padding:9px 9px 9px 34px;font-size:18px;border-radius:11px}
     scroll-margin-bottom:140px;
 }
 </style>
+
+<style>
+/* Saídas de Caixa: ajuste simples quando o teclado do Android aparece */
+#telaGastos.gastos-ativo{
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    box-sizing:border-box !important;
+}
+@media (max-width:600px){
+    #telaGastos.gastos-ativo{
+        min-height:0 !important;
+    }
+}
+</style>
+<script>
+(function(){
+    const atualizarTecladoGastos = () => {
+        const tela = document.getElementById('telaGastos');
+        if (!tela || tela.style.display === 'none') return;
+
+        const vv = window.visualViewport;
+        if (vv && vv.height > 0) {
+            tela.style.setProperty('--altura-teclado-gastos', vv.height + 'px');
+        }
+    };
+
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', atualizarTecladoGastos);
+    }
+
+    window.addEventListener('resize', atualizarTecladoGastos);
+})();
+</script>
 </head>
 <body>
 <div class="glow-orb glow-1"></div>
